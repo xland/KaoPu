@@ -1,0 +1,16 @@
+{
+  "name": "ui",
+  "version": "1.0.0",
+  "description": "",
+  "module": "false",
+  "scripts": {
+    "dev": "node ./scripts/dev.js",
+    "build": "node ./scripts/dev.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.19.2",
+    "fs-extra": "^11.1.1"
+  }
+}

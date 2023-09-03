@@ -4,6 +4,7 @@
 #include <wil/com.h>
 #include <dwmapi.h>
 #include "WebView2.h"
+#include "WebView2EnvironmentOptions.h"
 
 using namespace Microsoft::WRL;
 // Pointer to WebViewController
@@ -17,7 +18,7 @@ WindowBase::WindowBase() {
 }
 WindowBase::~WindowBase()
 {
-
+     
 }
 void WindowBase::InitWindow(const int& x, const int& y, const long& w, const long& h, const std::wstring& title)
 {
@@ -26,7 +27,7 @@ void WindowBase::InitWindow(const int& x, const int& y, const long& w, const lon
     this->w = w;
     this->h = h;
     static int num = 0;
-    std::wstring className = std::format(L"Install_{}", num++);
+    std::wstring className = std::format(L"KaoPu_{}", num++);
     auto hinstance = GetModuleHandle(NULL);
     WNDCLASSEX wcx{};
     wcx.cbSize = sizeof(wcx);
@@ -53,7 +54,23 @@ void WindowBase::Show() {
     ShowWindow(hwnd, SW_SHOW);
     UpdateWindow(hwnd);
 
-    CreateCoreWebView2EnvironmentWithOptions(nullptr, nullptr, nullptr,
+    auto options = Microsoft::WRL::Make<CoreWebView2EnvironmentOptions>();
+    options->put_AdditionalBrowserArguments(L"--allow-file-access-from-files");
+    Microsoft::WRL::ComPtr<ICoreWebView2EnvironmentOptions4> options4;
+    HRESULT oeResult = options.As(&options4);
+    if (oeResult != S_OK) {
+        // UNREACHABLE - cannot continue  todo
+    }
+    const WCHAR* allowedSchemeOrigins[5] = { L"about://*", L"http://*", L"https://*", L"file://*", L"socket://*" };
+    auto defaultRegistration = Microsoft::WRL::Make<CoreWebView2CustomSchemeRegistration>(L"kp");
+    defaultRegistration->put_HasAuthorityComponent(TRUE);
+    defaultRegistration->put_TreatAsSecure(TRUE);
+    defaultRegistration->SetAllowedOrigins(5, allowedSchemeOrigins);
+    ICoreWebView2CustomSchemeRegistration* registrations[1] = { defaultRegistration.Get() };
+    options4->SetCustomSchemeRegistrations(1, static_cast<ICoreWebView2CustomSchemeRegistration**>(registrations));
+
+
+    CreateCoreWebView2EnvironmentWithOptions(nullptr, nullptr, options.Get(),
         Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
             [this](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
 
@@ -77,60 +94,8 @@ void WindowBase::Show() {
                         RECT bounds;
                         GetClientRect(hwnd, &bounds);
                         webviewController->put_Bounds(bounds);
-
                         // Schedule an async task to navigate to Bing
-                        webview->Navigate(L"https://www.bing.com/");
-
-                        // <NavigationEvents>
-                        // Step 4 - Navigation events
-                        // register an ICoreWebView2NavigationStartingEventHandler to cancel any non-https navigation
-                        EventRegistrationToken token;
-                        webview->add_NavigationStarting(Callback<ICoreWebView2NavigationStartingEventHandler>(
-                            [](ICoreWebView2* webview, ICoreWebView2NavigationStartingEventArgs* args) -> HRESULT {
-                                wil::unique_cotaskmem_string uri;
-                                args->get_Uri(&uri);
-                                std::wstring source(uri.get());
-                                if (source.substr(0, 5) != L"https") {
-                                    args->put_Cancel(true);
-                                }
-                                return S_OK;
-                            }).Get(), &token);
-                        // </NavigationEvents>
-
-                        // <Scripting>
-                        // Step 5 - Scripting
-                        // Schedule an async task to add initialization script that freezes the Object object
-                        webview->AddScriptToExecuteOnDocumentCreated(L"Object.freeze(Object);", nullptr);
-                        // Schedule an async task to get the document URL
-                        webview->ExecuteScript(L"window.document.URL;", Callback<ICoreWebView2ExecuteScriptCompletedHandler>(
-                            [](HRESULT errorCode, LPCWSTR resultObjectAsJson) -> HRESULT {
-                                LPCWSTR URL = resultObjectAsJson;
-                                //doSomethingWithURL(URL);
-                                return S_OK;
-                            }).Get());
-                        // </Scripting>
-
-                        // <CommunicationHostWeb>
-                        // Step 6 - Communication between host and web content
-                        // Set an event handler for the host to return received message back to the web content
-                        webview->add_WebMessageReceived(Callback<ICoreWebView2WebMessageReceivedEventHandler>(
-                            [](ICoreWebView2* webview, ICoreWebView2WebMessageReceivedEventArgs* args) -> HRESULT {
-                                wil::unique_cotaskmem_string message;
-                                args->TryGetWebMessageAsString(&message);
-                                // processMessage(&message);
-                                webview->PostWebMessageAsString(message.get());
-                                return S_OK;
-                            }).Get(), &token);
-
-                        // Schedule an async task to add initialization script that
-                        // 1) Add an listener to print message from the host
-                        // 2) Post document URL to the host
-                        webview->AddScriptToExecuteOnDocumentCreated(
-                            L"window.chrome.webview.addEventListener(\'message\', event => alert(event.data));" \
-                            L"window.chrome.webview.postMessage(window.document.URL);",
-                            nullptr);
-                        // </CommunicationHostWeb>
-
+                        webview->Navigate(L"file:///D:/project/KaoPu/ui/src/index.html");
                         return S_OK;
                     }).Get());
                 return S_OK;

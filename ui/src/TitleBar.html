@@ -28,11 +28,12 @@
 <script>
     class TitleBar extends HTMLElement {
       constructor() {
-        super();
-        // var templateElem = document.getElementById('userCardTemplate');
-        // var content = templateElem.content.cloneNode(true);
-        // this.appendChild(content);
+        super();        
+      }
+      connectedCallback() {
+            this.innerHTML = `%TEMPLATE_CONTENT%`;
       }
     }
-    // window.customElements.define('user-card', UserCard);
+    window.customElements.define('title-bar', TitleBar);
+    
 </script>

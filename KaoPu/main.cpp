@@ -1,8 +1,10 @@
 #include <Windows.h>
+#include "EnvironmentBox.h"
 #include "WindowMain.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPTSTR lpCmdLine, _In_ int nCmdShow)
 {
+    EnvironmentBox::Init(nullptr);
     WindowMain win;;
     win.Show();
     MSG msg;

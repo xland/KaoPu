@@ -54,23 +54,23 @@ void WindowBase::Show() {
     ShowWindow(hwnd, SW_SHOW);
     UpdateWindow(hwnd);
 
-    auto options = Microsoft::WRL::Make<CoreWebView2EnvironmentOptions>();
-    options->put_AdditionalBrowserArguments(L"--allow-file-access-from-files");
-    Microsoft::WRL::ComPtr<ICoreWebView2EnvironmentOptions4> options4;
-    HRESULT oeResult = options.As(&options4);
-    if (oeResult != S_OK) {
-        // UNREACHABLE - cannot continue  todo
-    }
-    const WCHAR* allowedSchemeOrigins[5] = { L"about://*", L"http://*", L"https://*", L"file://*", L"socket://*" };
-    auto defaultRegistration = Microsoft::WRL::Make<CoreWebView2CustomSchemeRegistration>(L"kp");
-    defaultRegistration->put_HasAuthorityComponent(TRUE);
-    defaultRegistration->put_TreatAsSecure(TRUE);
-    defaultRegistration->SetAllowedOrigins(5, allowedSchemeOrigins);
-    ICoreWebView2CustomSchemeRegistration* registrations[1] = { defaultRegistration.Get() };
-    options4->SetCustomSchemeRegistrations(1, static_cast<ICoreWebView2CustomSchemeRegistration**>(registrations));
+    //auto options = Microsoft::WRL::Make<CoreWebView2EnvironmentOptions>();
+    //options->put_AdditionalBrowserArguments(L"--allow-file-access-from-files");
+    //Microsoft::WRL::ComPtr<ICoreWebView2EnvironmentOptions4> options4;
+    //HRESULT oeResult = options.As(&options4);
+    //if (oeResult != S_OK) {
+    //    // UNREACHABLE - cannot continue  todo
+    //}
+    //const WCHAR* allowedSchemeOrigins[5] = { L"about://*", L"http://*", L"https://*", L"file://*", L"socket://*" };
+    //auto defaultRegistration = Microsoft::WRL::Make<CoreWebView2CustomSchemeRegistration>(L"kp");
+    //defaultRegistration->put_HasAuthorityComponent(TRUE);
+    //defaultRegistration->put_TreatAsSecure(TRUE);
+    //defaultRegistration->SetAllowedOrigins(5, allowedSchemeOrigins);
+    //ICoreWebView2CustomSchemeRegistration* registrations[1] = { defaultRegistration.Get() };
+    //options4->SetCustomSchemeRegistrations(1, static_cast<ICoreWebView2CustomSchemeRegistration**>(registrations));
 
 
-    CreateCoreWebView2EnvironmentWithOptions(nullptr, nullptr, options.Get(),
+    CreateCoreWebView2EnvironmentWithOptions(nullptr, nullptr, nullptr,//options.Get()
         Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
             [this](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
 

@@ -24,6 +24,12 @@
     <ClCompile Include="WindowMain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="EnvironmentBox.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -35,5 +41,14 @@
     <ClInclude Include="WindowMain.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="EnvironmentBox.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogBase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
   </ItemGroup>
 </Project>

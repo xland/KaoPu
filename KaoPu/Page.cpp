@@ -8,7 +8,7 @@ Page::Page(wil::com_ptr<ICoreWebView2>&& webview) :webview{ webview }
 	settings->put_IsScriptEnabled(TRUE);
 	settings->put_AreDefaultScriptDialogsEnabled(TRUE);
 	settings->put_IsWebMessageEnabled(TRUE);
-	webview->AddHostObjectToScript(L"frameObj",)
+	//webview->AddHostObjectToScript(L"frameObj",)
 	Navigate("");
 }
 Page::~Page()

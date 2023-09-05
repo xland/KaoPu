@@ -12,11 +12,12 @@
 class EnvironmentBox
 {
 public:
-	static void Init(const std::function<void()> func);
+	static bool Init(const std::function<void()> func);
+	static EnvironmentBox* Get();
 	HRESULT callBack(HRESULT result, ICoreWebView2Environment* env);
 	ICoreWebView2Environment* Environment;
 private:
-	void ensureAppFolder();
+	std::filesystem::path ensureAppFolder();
 	bool checkRegKey(const HKEY& key, const std::wstring& subKey);
 	bool checkRuntime();
 	std::function<void()> func;

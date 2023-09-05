@@ -105,11 +105,12 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;_UNICODE;UNICODE;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dwmapi.lib;Shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dwmapi.lib;Shell32.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
@@ -124,33 +125,47 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dwmapi.lib;Shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dwmapi.lib;Shell32.lib;Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DialogBase.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="DialogProgress.cpp" />
     <ClCompile Include="EnvironmentBox.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Page.cpp" />
+    <ClCompile Include="PageController.cpp" />
+    <ClCompile Include="Util.cpp" />
     <ClCompile Include="WindowBase.cpp" />
     <ClCompile Include="WindowMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="ToDo.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DialogBase.h" />
+    <ClInclude Include="App.h" />
+    <ClInclude Include="DialogProgress.h" />
     <ClInclude Include="EnvironmentBox.h" />
+    <ClInclude Include="Page.h" />
+    <ClInclude Include="PageController.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Util.h" />
     <ClInclude Include="WindowBase.h" />
     <ClInclude Include="WindowMain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KaoPu.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

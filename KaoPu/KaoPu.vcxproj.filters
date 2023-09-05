@@ -27,12 +27,25 @@
     <ClCompile Include="EnvironmentBox.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DialogBase.cpp">
+    <ClCompile Include="Util.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogProgress.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PageController.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Page.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="ToDo.md" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowBase.h">
@@ -44,11 +57,31 @@
     <ClInclude Include="EnvironmentBox.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DialogBase.h">
+    <ClInclude Include="Util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogProgress.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PageController.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Page.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KaoPu.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

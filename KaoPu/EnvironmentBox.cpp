@@ -5,36 +5,70 @@ namespace {
     static EnvironmentBox* env;
 }
 
-
-void EnvironmentBox::Init(const std::function<void()> func)
+EnvironmentBox* EnvironmentBox::Get()
+{
+    return env;
+}
+bool EnvironmentBox::Init(const std::function<void()> func)
 {
     if (env) {
-        return;
+        return true;
     }
     env = new EnvironmentBox();
-    env->ensureAppFolder();
+    if (!env->checkRuntime()) {
+        return false;
+    }
+    auto path = env->ensureAppFolder();
+    if (path.empty()) {
+        return false;
+    }
     env->func = func;
-    //auto envCBInstance = Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(pageEnv, &PageEnvironment::callBack);
-    //HRESULT result = CreateCoreWebView2EnvironmentWithOptions(nullptr, nullptr, nullptr, envCBInstance.Get());
-    std::wstring m_userDataFolder = L"C:\\MyAppUserDataFolder";
-    HRESULT hr = CreateCoreWebView2EnvironmentWithOptions(
-        NULL, m_userDataFolder.c_str(), nullptr,
-        Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(env, &EnvironmentBox::callBack).Get());
+    //auto options = Microsoft::WRL::Make<CoreWebView2EnvironmentOptions>();
+    //options->put_AdditionalBrowserArguments(L"--allow-file-access-from-files");
+    //Microsoft::WRL::ComPtr<ICoreWebView2EnvironmentOptions4> options4;
+    //HRESULT oeResult = options.As(&options4);
+    //if (oeResult != S_OK) {
+    //    // UNREACHABLE - cannot continue  todo
+    //}
+    //const WCHAR* allowedSchemeOrigins[5] = { L"about://*", L"http://*", L"https://*", L"file://*", L"socket://*" };
+    //auto defaultRegistration = Microsoft::WRL::Make<CoreWebView2CustomSchemeRegistration>(L"kp");
+    //defaultRegistration->put_HasAuthorityComponent(TRUE);
+    //defaultRegistration->put_TreatAsSecure(TRUE);
+    //defaultRegistration->SetAllowedOrigins(5, allowedSchemeOrigins);
+    //ICoreWebView2CustomSchemeRegistration* registrations[1] = { defaultRegistration.Get() };
+    //options4->SetCustomSchemeRegistrations(1, static_cast<ICoreWebView2CustomSchemeRegistration**>(registrations));
+    auto envCBInstance = Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(env, &EnvironmentBox::callBack);
+    HRESULT result = CreateCoreWebView2EnvironmentWithOptions(nullptr, path.c_str(), nullptr/*options.Get()*/, envCBInstance.Get());
+    if (FAILED(result)) {
+        return false;
+    }
+    return true;
 }
 
-void EnvironmentBox::ensureAppFolder() {
+std::filesystem::path EnvironmentBox::ensureAppFolder() {
     std::filesystem::path path;
-    PWSTR path_tmp;
-    auto get_folder_path_ret = SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, nullptr, &path_tmp);
-    if (get_folder_path_ret != S_OK) {
-        CoTaskMemFree(path_tmp);
+    PWSTR pathTmp;
+    auto ret = SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, nullptr, &pathTmp);
+    if (ret != S_OK) {
+        CoTaskMemFree(pathTmp);
         auto result = MessageBox(nullptr, L"未找到系统应用程序目录AppData，即将退出",
             L"系统提示", MB_OK | MB_ICONINFORMATION | MB_DEFBUTTON1);
         exit(1);
-        return;
+        return path;
     }
-    path = path_tmp;
-    CoTaskMemFree(path_tmp);
+    path = pathTmp;
+    CoTaskMemFree(pathTmp);
+    path /= L"KaoPu";
+    if (!std::filesystem::exists(path)) {
+        auto flag = std::filesystem::create_directory(path);
+        if (!flag) {
+            MessageBox(nullptr, L"数据目录创建失败，即将退出",
+                L"系统提示", MB_OK | MB_ICONINFORMATION | MB_DEFBUTTON1);
+            exit(1);
+        }
+        auto a = 1;
+    }
+    return path;
 }
 
 

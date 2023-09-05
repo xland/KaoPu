@@ -1,10 +1,9 @@
-#include "WindowBase.h"
+﻿#include "WindowBase.h"
 #include <windowsx.h>
 #include <wrl.h>
 #include <wil/com.h>
 #include <dwmapi.h>
-#include "WebView2.h"
-#include "WebView2EnvironmentOptions.h"
+#include "EnvironmentBox.h"
 
 using namespace Microsoft::WRL;
 // Pointer to WebViewController
@@ -20,6 +19,9 @@ WindowBase::~WindowBase()
 {
      
 }
+
+
+
 void WindowBase::InitWindow(const int& x, const int& y, const long& w, const long& h, const std::wstring& title)
 {
     this->x = x;
@@ -41,7 +43,7 @@ void WindowBase::InitWindow(const int& x, const int& y, const long& w, const lon
     wcx.lpszClassName = className.c_str();
     if (!RegisterClassEx(&wcx))
     {
-        MessageBox(NULL, L"ע�ᴰ����ʧ��", L"ϵͳ��ʾ", NULL);
+        MessageBox(NULL, L"注册窗口类失败", L"系统提示", NULL);
         return;
     }
     hwnd = CreateWindowEx(NULL, wcx.lpszClassName, title.c_str(),
@@ -49,57 +51,64 @@ void WindowBase::InitWindow(const int& x, const int& y, const long& w, const lon
     SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
     const MARGINS shadowState{ 1,1,1,1 };
     DwmExtendFrameIntoClientArea(hwnd, &shadowState);
+    Show();
 }
+
+bool WindowBase::CreatePageController()
+{
+    auto callBackInstance = Callback<ICoreWebView2CreateCoreWebView2ControllerCompletedHandler>(this, &WindowBase::pageCtrlCallBack);
+    auto env = EnvironmentBox::Get()->Environment;
+    auto result = env->CreateCoreWebView2Controller(hwnd, callBackInstance.Get());
+    if (FAILED(result)) {
+        return false;
+    }
+    return true;
+}
+
+HRESULT WindowBase::pageCtrlCallBack(HRESULT result, ICoreWebView2Controller* controller)
+{
+    pageCtrl = new PageController(controller);
+    RECT bounds;
+    GetClientRect(hwnd, &bounds); //todo 多个ctrl
+    auto hr = controller->put_Bounds(bounds);
+    return hr;
+}
+
+
 void WindowBase::Show() {
     ShowWindow(hwnd, SW_SHOW);
     UpdateWindow(hwnd);
 
-    //auto options = Microsoft::WRL::Make<CoreWebView2EnvironmentOptions>();
-    //options->put_AdditionalBrowserArguments(L"--allow-file-access-from-files");
-    //Microsoft::WRL::ComPtr<ICoreWebView2EnvironmentOptions4> options4;
-    //HRESULT oeResult = options.As(&options4);
-    //if (oeResult != S_OK) {
-    //    // UNREACHABLE - cannot continue  todo
-    //}
-    //const WCHAR* allowedSchemeOrigins[5] = { L"about://*", L"http://*", L"https://*", L"file://*", L"socket://*" };
-    //auto defaultRegistration = Microsoft::WRL::Make<CoreWebView2CustomSchemeRegistration>(L"kp");
-    //defaultRegistration->put_HasAuthorityComponent(TRUE);
-    //defaultRegistration->put_TreatAsSecure(TRUE);
-    //defaultRegistration->SetAllowedOrigins(5, allowedSchemeOrigins);
-    //ICoreWebView2CustomSchemeRegistration* registrations[1] = { defaultRegistration.Get() };
-    //options4->SetCustomSchemeRegistrations(1, static_cast<ICoreWebView2CustomSchemeRegistration**>(registrations));
 
 
-    CreateCoreWebView2EnvironmentWithOptions(nullptr, nullptr, nullptr,//options.Get()
-        Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
-            [this](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
 
-                // Create a CoreWebView2Controller and get the associated CoreWebView2 whose parent is the main window hWnd
-                env->CreateCoreWebView2Controller(hwnd, Callback<ICoreWebView2CreateCoreWebView2ControllerCompletedHandler>(
-                    [this](HRESULT result, ICoreWebView2Controller* controller) -> HRESULT {
-                        if (controller != nullptr) {
-                            webviewController = controller;
-                            webviewController->get_CoreWebView2(&webview);
-                        }
-
-                        // Add a few settings for the webview
-                        // The demo step is redundant since the values are the default settings
-                        wil::com_ptr<ICoreWebView2Settings> settings;
-                        webview->get_Settings(&settings);
-                        settings->put_IsScriptEnabled(TRUE);
-                        settings->put_AreDefaultScriptDialogsEnabled(TRUE);
-                        settings->put_IsWebMessageEnabled(TRUE);
-
-                        // Resize WebView to fit the bounds of the parent window
-                        RECT bounds;
-                        GetClientRect(hwnd, &bounds);
-                        webviewController->put_Bounds(bounds);
-                        // Schedule an async task to navigate to Bing
-                        webview->Navigate(L"file:///D:/project/KaoPu/ui/src/index.html");
-                        return S_OK;
-                    }).Get());
-                return S_OK;
-            }).Get());
+    //CreateCoreWebView2EnvironmentWithOptions(nullptr, nullptr, nullptr,
+    //    Callback<ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler>(
+    //        [this](HRESULT result, ICoreWebView2Environment* env) -> HRESULT {
+    //            // Create a CoreWebView2Controller and get the associated CoreWebView2 whose parent is the main window hWnd
+    //            env->CreateCoreWebView2Controller(hwnd, Callback<ICoreWebView2CreateCoreWebView2ControllerCompletedHandler>(
+    //                [this](HRESULT result, ICoreWebView2Controller* controller) -> HRESULT {
+    //                    if (controller != nullptr) {
+    //                        webviewController = controller;
+    //                        webviewController->get_CoreWebView2(&webview);
+    //                    }
+    //                    // Add a few settings for the webview
+    //                    // The demo step is redundant since the values are the default settings
+    //                    wil::com_ptr<ICoreWebView2Settings> settings;
+    //                    webview->get_Settings(&settings);
+    //                    settings->put_IsScriptEnabled(TRUE);
+    //                    settings->put_AreDefaultScriptDialogsEnabled(TRUE);
+    //                    settings->put_IsWebMessageEnabled(TRUE);
+    //                    // Resize WebView to fit the bounds of the parent window
+    //                    RECT bounds;
+    //                    GetClientRect(hwnd, &bounds);
+    //                    webviewController->put_Bounds(bounds);
+    //                    // Schedule an async task to navigate to Bing
+    //                    webview->Navigate(L"file:///D:/project/KaoPu/ui/src/index.html");
+    //                    return S_OK;
+    //                }).Get());
+    //            return S_OK;
+    //        }).Get());
 }
 
 LRESULT CALLBACK WindowBase::RouteWindowMessage(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
@@ -128,6 +137,13 @@ LRESULT CALLBACK WindowBase::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPAR
             return false;
         }
         break;
+    }
+    case WM_EXITSIZEMOVE: {
+        RECT rect;
+        GetWindowRect(hWnd, &rect);
+        this->x = rect.left;
+        this->y = rect.top;
+        return true;
     }
     //case WM_SIZE: {
     //    if (webviewController != nullptr) {

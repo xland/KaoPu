@@ -142,6 +142,9 @@
     <Manifest>
       <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
     </Manifest>
+    <Midl>
+      <TypeLibraryName>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb</TypeLibraryName>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />

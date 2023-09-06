@@ -6,5 +6,14 @@
     </head>
     <body>
         <title-bar></title-bar>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                document.body.addEventListener('mousedown', evt => {
+                    chrome.webview.hostObjects.sync.host.MouseDownDrag();
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                });
+            });
+        </script>
     </body>
 </html>

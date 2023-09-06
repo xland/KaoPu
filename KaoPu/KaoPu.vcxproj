@@ -115,6 +115,11 @@
     <Manifest>
       <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
     </Manifest>
+    <Midl>
+      <OutputDirectory>
+      </OutputDirectory>
+      <TypeLibraryName>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb</TypeLibraryName>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -142,9 +147,9 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="DialogProgress.cpp" />
     <ClCompile Include="EnvironmentBox.cpp" />
+    <ClCompile Include="HostImpl.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Page.cpp" />
-    <ClCompile Include="PageController.cpp" />
     <ClCompile Include="Util.cpp" />
     <ClCompile Include="WindowBase.cpp" />
     <ClCompile Include="WindowMain.cpp" />
@@ -157,15 +162,19 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="DialogProgress.h" />
     <ClInclude Include="EnvironmentBox.h" />
+    <ClInclude Include="HostImpl.h" />
     <ClInclude Include="Page.h" />
-    <ClInclude Include="PageController.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="WindowBase.h" />
     <ClInclude Include="WindowMain.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="KaoPu.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Host.idl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

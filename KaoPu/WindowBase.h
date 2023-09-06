@@ -5,7 +5,7 @@
 #include <wrl.h>
 #include <wil/com.h>
 #include <WebView2.h>
-#include "PageController.h"
+#include "Page.h"
 class WindowBase
 {
 public:
@@ -14,6 +14,7 @@ public:
 	void Show();
 	void InitWindow(const int& x, const int& y, const long& w, const long& h, const std::wstring& title);
 	bool CreatePageController();
+	HWND hwnd;
 protected:
 
 private:
@@ -22,11 +23,11 @@ private:
 	LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 	long w, h;
 	int x, y;
-	HWND hwnd;
 	void* pixelData;
 	unsigned long pixelDataSize;
 	HBITMAP bitmap;
 	HDC compatibleDC = NULL;
-	PageController* pageCtrl;
+	wil::com_ptr<ICoreWebView2Controller> controller;	
+	Page* page;
 };
 

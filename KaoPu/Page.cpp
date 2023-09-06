@@ -1,14 +1,20 @@
 ﻿#include "Page.h"
 using namespace Microsoft::WRL;
+#include "WindowBase.h"
 
-Page::Page(wil::com_ptr<ICoreWebView2>&& webview) :webview{ webview }
+Page::Page(wil::com_ptr<ICoreWebView2> webview,WindowBase* win) :webview{ webview },win{win}
 {
 	wil::com_ptr<ICoreWebView2Settings> settings;
 	webview->get_Settings(&settings);
 	settings->put_IsScriptEnabled(TRUE);
 	settings->put_AreDefaultScriptDialogsEnabled(TRUE);
 	settings->put_IsWebMessageEnabled(TRUE);
-	//webview->AddHostObjectToScript(L"frameObj",)
+	hostObj = Microsoft::WRL::Make<Host>(win);
+	VARIANT remoteObjectAsVariant = {};
+	hostObj.query_to<IDispatch>(&remoteObjectAsVariant.pdispVal);
+	remoteObjectAsVariant.vt = VT_DISPATCH;
+	webview->AddHostObjectToScript(L"host", &remoteObjectAsVariant);
+	remoteObjectAsVariant.pdispVal->Release();
 	Navigate("");
 }
 Page::~Page()

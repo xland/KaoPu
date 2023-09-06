@@ -67,10 +67,14 @@ bool WindowBase::CreatePageController()
 
 HRESULT WindowBase::pageCtrlCallBack(HRESULT result, ICoreWebView2Controller* controller)
 {
-    pageCtrl = new PageController(controller);
+    this->controller = controller;
+    wil::com_ptr<ICoreWebView2> webview;
+    auto hr = controller->get_CoreWebView2(&webview);
+    page = new Page(webview,this);
+
     RECT bounds;
     GetClientRect(hwnd, &bounds); //todo 多个ctrl
-    auto hr = controller->put_Bounds(bounds);
+    hr = controller->put_Bounds(bounds);
     return hr;
 }
 

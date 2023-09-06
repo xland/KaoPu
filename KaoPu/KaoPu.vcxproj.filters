@@ -36,10 +36,10 @@
     <ClCompile Include="App.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="PageController.cpp">
+    <ClCompile Include="Page.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Page.cpp">
+    <ClCompile Include="HostImpl.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,10 +69,13 @@
     <ClInclude Include="App.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="PageController.h">
+    <ClInclude Include="Page.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Page.h">
+    <ClInclude Include="HostImpl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,5 +86,10 @@
     <ResourceCompile Include="KaoPu.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Host.idl">
+      <Filter>源文件</Filter>
+    </Midl>
   </ItemGroup>
 </Project>

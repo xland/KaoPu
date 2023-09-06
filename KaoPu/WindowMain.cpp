@@ -1,4 +1,4 @@
-#include "WindowMain.h"
+Ôªø#include "WindowMain.h"
 
 WindowMain::WindowMain() {
     long w{ 1000 }, h{ 700 };
@@ -6,7 +6,7 @@ WindowMain::WindowMain() {
     SystemParametersInfo(SPI_GETWORKAREA, 0, &rect, 0);
     int x = (rect.right - w) / 2;
     int y = (rect.bottom - h) / 2;
-    InitWindow(x, y, w, h, L"HikLink∞≤◊∞≥Ã–Ú");
+    InitWindow(x, y, w, h, L"Èù†Ë∞±");
 }
 WindowMain::~WindowMain() {
 

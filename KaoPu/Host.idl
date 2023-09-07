@@ -9,6 +9,7 @@ library HostLibrary
     interface IHost : IUnknown
     {
         HRESULT MouseDownDrag();
+        HRESULT MinimizeWindow();
     };
     //! [AddHostObjectInterface]
     [uuid(637abc45-11f7-4dde-84b4-317d62a638d3)]

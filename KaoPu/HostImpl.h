@@ -12,6 +12,7 @@ class Host : public Microsoft::WRL::RuntimeClass<Microsoft::WRL::RuntimeClassFla
 public:
     Host(WindowBase* win);
     STDMETHODIMP MouseDownDrag() override;
+    STDMETHODIMP MinimizeWindow() override;
     STDMETHODIMP GetTypeInfoCount(UINT* pctinfo) override;
     STDMETHODIMP GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo) override;
     STDMETHODIMP GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId) override;

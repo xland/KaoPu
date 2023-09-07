@@ -12,6 +12,12 @@ STDMETHODIMP Host::MouseDownDrag()
     return S_OK;
 }
 
+STDMETHODIMP Host::MinimizeWindow()
+{
+
+    return S_OK;
+}
+
 STDMETHODIMP Host::GetTypeInfoCount(UINT* pctinfo)
 {
     *pctinfo = 1;

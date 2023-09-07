@@ -1,1 +1,0 @@
-- 为什么只有Show了之后才能注册PageCtrl

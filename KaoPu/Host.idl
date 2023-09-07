@@ -8,8 +8,11 @@ library HostLibrary
     [uuid(3a14c9c0-bc3e-453f-a314-4ce4a0ec81d8), object, local]
     interface IHost : IUnknown
     {
-        HRESULT MouseDownDrag();
+        HRESULT HitTest(int htValue);
         HRESULT MinimizeWindow();
+        HRESULT MaximizeWindow();
+        HRESULT CloseWindow();
+        HRESULT RestoreWindow();
     };
     //! [AddHostObjectInterface]
     [uuid(637abc45-11f7-4dde-84b4-317d62a638d3)]

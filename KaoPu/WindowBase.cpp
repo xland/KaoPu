@@ -6,8 +6,7 @@
 #include "EnvironmentBox.h"
 
 using namespace Microsoft::WRL;
-// Pointer to WebViewController
-static wil::com_ptr<ICoreWebView2Controller> webviewController;
+
 
 // Pointer to WebView window
 static wil::com_ptr<ICoreWebView2> webview;
@@ -149,14 +148,14 @@ LRESULT CALLBACK WindowBase::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPAR
         this->y = rect.top;
         return true;
     }
-    //case WM_SIZE: {
-    //    if (webviewController != nullptr) {
-    //        RECT bounds;
-    //        GetClientRect(hWnd, &bounds);
-    //        webviewController->put_Bounds(bounds);
-    //    };
-    //    break;
-    //}
+    case WM_SIZE: {
+        if (lParam != 0 && controller != nullptr) {
+            RECT rect;
+            GetClientRect(hWnd, &rect);
+            controller->put_Bounds(rect);
+        };
+        break;
+    }
     case WM_DESTROY: {
         PostQuitMessage(0);
         break;

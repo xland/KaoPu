@@ -5,14 +5,29 @@ Host::Host(WindowBase* win):win{win}
 {
 }
 
-STDMETHODIMP Host::MouseDownDrag()
+STDMETHODIMP Host::HitTest(int htValue)
 {
     ReleaseCapture();
-    SendMessage(win->hwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+    SendMessage(win->hwnd, WM_NCLBUTTONDOWN, htValue, 0);
     return S_OK;
 }
 
 STDMETHODIMP Host::MinimizeWindow()
+{
+
+    return S_OK;
+}
+STDMETHODIMP Host::MaximizeWindow()
+{
+
+    return S_OK;
+}
+STDMETHODIMP Host::CloseWindow()
+{
+
+    return S_OK;
+}
+STDMETHODIMP Host::RestoreWindow()
 {
 
     return S_OK;

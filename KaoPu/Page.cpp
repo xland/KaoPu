@@ -9,12 +9,14 @@ Page::Page(wil::com_ptr<ICoreWebView2> webview,WindowBase* win) :webview{ webvie
 	settings->put_IsScriptEnabled(TRUE);
 	settings->put_AreDefaultScriptDialogsEnabled(TRUE);
 	settings->put_IsWebMessageEnabled(TRUE);
+
 	hostObj = Microsoft::WRL::Make<Host>(win);
 	VARIANT remoteObjectAsVariant = {};
 	hostObj.query_to<IDispatch>(&remoteObjectAsVariant.pdispVal);
 	remoteObjectAsVariant.vt = VT_DISPATCH;
 	webview->AddHostObjectToScript(L"host", &remoteObjectAsVariant);
 	remoteObjectAsVariant.pdispVal->Release();
+
 	Navigate("");
 }
 Page::~Page()

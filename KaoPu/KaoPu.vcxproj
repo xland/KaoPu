@@ -151,6 +151,7 @@
     <ClCompile Include="DialogProgress.cpp" />
     <ClCompile Include="EnvironmentBox.cpp" />
     <ClCompile Include="HostImpl.cpp" />
+    <ClCompile Include="Host_i.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="Util.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="DialogProgress.h" />
     <ClInclude Include="EnvironmentBox.h" />
     <ClInclude Include="HostImpl.h" />
+    <ClInclude Include="Host_h.h" />
     <ClInclude Include="Page.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />

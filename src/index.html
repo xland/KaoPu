@@ -9,16 +9,16 @@
         <div class="titleBar">
             <div class="title">测试程序</div>
             <div class="toolBtns">
-                <div class="minimizeBtn">
+                <div id="minimizeBtn">
                     <i class="iconfont icon-minimize"></i>
                 </div>
-                <div class="restoreBtn" style="display: none;">
+                <div id="restoreBtn" style="display: none;">
                     <i class="iconfont icon-suoxiao1"></i>
                 </div>
-                <div class="maximizeBtn">
+                <div id="maximizeBtn">
                     <i class="iconfont icon-fangda"></i>
                 </div>
-                <div class="closeBtn">
+                <div id="closeBtn">
                     <i class="iconfont icon-close"></i>
                 </div>
             </div>
@@ -35,8 +35,22 @@
                     </div>
                 </div>
             </div>
-            <div class="navigateBox"></div>
-            <div class="listBox"></div>
+            <div id="navigateBox">
+                <div id="navigateHeader">
+                    <div id="navigateSearchBox">
+                        <div class="searchIcon">
+                            <i class="iconfont icon-search"></i>
+                        </div>
+                        <input id="navigateSearchInput" type="text">
+                    </div>
+                    <div>
+                        <i class="iconfont icon"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="navigateBoxSplitter" class="splitter"></div>
+            <div id="listBox"></div>
+            <div id="listBoxSplitter" class="splitter"></div>
             <div class="chessBoard"></div>
         </div>
         <div class="statusBar">

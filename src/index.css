@@ -41,7 +41,7 @@ body{
 .toolBtns div i{
     font-size: 10px;
 }
-.closeBtn:hover{
+#closeBtn:hover{
     background: #e81123 !important;    
     color: #FFF !important;    
 }
@@ -51,6 +51,18 @@ body{
 .centerBox{
     flex: 1;
     display: flex;
+}
+.splitter{
+    position: absolute;
+    top: 32px;
+    bottom: 28px;
+    width: 4px;
+    z-index: 1;
+    background: transparent;
+    cursor:ew-resize;
+}
+.splitter:hover{
+    background: #0078d4;
 }
 /* #region 侧边栏 */
 .leftBar{
@@ -79,12 +91,43 @@ body{
 /* #endregion */
 
 /* #region 导航栏 */
-.navigateBox{
-    width: 158px;
+#navigateBox{
+    width: 258px;
     border-right: 1px solid #2b2b2b;
     box-sizing: border-box;
 }
-.listBox{
+#navigateHeader{
+    display: flex;
+    background: #1f1f1f;
+    height: 32px;
+    line-height: 32px;
+}
+#navigateSearchBox{
+    background: #242424;
+    display: flex;
+    color: #c7c7c7;
+    flex: 1;
+}
+.searchIcon{
+    width: 26px;
+    text-align: center;    
+}
+.searchIcon i{
+    font-size: 12px;
+}
+#navigateSearchInput{
+    background: none;
+    outline: none;
+    padding: 0px;
+    margin: 0px;
+    display: block;
+    border: none;
+    color: #c7c7c7;
+}
+/* #endregion */
+
+/* #region 列表栏 */
+#listBox{
     width: 158px;
     border-right: 1px solid #2b2b2b;
     box-sizing: border-box;

@@ -21,7 +21,7 @@ let creatreWindow = async ()=>{
     win.addListener("unmaximize",()=>{
         win.webContents.send("windowStateChanged","unmaximize")
     })
-    await win.loadURL("http://127.0.0.1:5500/src/index.html");
+    await win.loadURL(process.argv[2]);
     win.show();
     win.webContents.openDevTools({mode:"undocked"});
 }

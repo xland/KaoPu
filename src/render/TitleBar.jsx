@@ -1,11 +1,14 @@
 import React from "jsx-dom"
 import "./TitleBar.css"
 export default function() {
+    let minimize = ()=>{
+        
+    }
   return (
     <div class="titleBar">
         <div class="title">测试程序</div>
         <div class="toolBtns">
-            <div id="minimizeBtn">
+            <div onClick={minimize} id="minimizeBtn">
                 <i class="iconfont icon-minimize"></i>
             </div>
             <div id="restoreBtn" style="display: none;">

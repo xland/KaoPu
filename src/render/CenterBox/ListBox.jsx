@@ -1,5 +1,5 @@
 import React from "jsx-dom"
-import "./NavigateBox.css"
+import "./ListBox.css"
 export default function () {
     let minimize = () => {
 

@@ -1,4 +1,12 @@
 (() => {
+  var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
+    get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
+  }) : x)(function(x) {
+    if (typeof require !== "undefined")
+      return require.apply(this, arguments);
+    throw Error('Dynamic require of "' + x + '" is not supported');
+  });
+
   // node_modules/.store/jsx-dom@8.0.7/node_modules/jsx-dom/index.js
   var keys = Object.keys;
   function isBoolean(val) {
@@ -462,12 +470,122 @@
 
   // src/render/TitleBar.jsx
   function TitleBar_default() {
-    return /* @__PURE__ */ index.createElement("div", { class: "titleBar" }, /* @__PURE__ */ index.createElement("div", { class: "title" }, "\u6D4B\u8BD5\u7A0B\u5E8F"), /* @__PURE__ */ index.createElement("div", { class: "toolBtns" }, /* @__PURE__ */ index.createElement("div", { id: "minimizeBtn" }, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-minimize" })), /* @__PURE__ */ index.createElement("div", { id: "restoreBtn", style: "display: none;" }, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-suoxiao1" })), /* @__PURE__ */ index.createElement("div", { id: "maximizeBtn" }, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-fangda" })), /* @__PURE__ */ index.createElement("div", { id: "closeBtn" }, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-close" }))));
+    let minimize = async () => {
+      let { ipcRenderer } = __require("electron");
+      await ipcRenderer.invoke("changeWindowState", "minimize");
+    };
+    let restore = async () => {
+      let { ipcRenderer } = __require("electron");
+      await ipcRenderer.invoke("changeWindowState", "restore");
+    };
+    let maximize = async () => {
+      let { ipcRenderer } = __require("electron");
+      await ipcRenderer.invoke("changeWindowState", "maximize");
+    };
+    let close = async () => {
+      let { ipcRenderer } = __require("electron");
+      await ipcRenderer.invoke("changeWindowState", "close");
+    };
+    document.addEventListener("DOMContentLoaded", () => {
+      let { ipcRenderer } = __require("electron");
+      ipcRenderer.addListener("windowStateChanged", (e, state) => {
+        if (state === "maximize") {
+          document.getElementById("restoreBtn").style.display = "";
+          document.getElementById("maximizeBtn").style.display = "none";
+        } else if (state === "unmaximize") {
+          document.getElementById("restoreBtn").style.display = "none";
+          document.getElementById("maximizeBtn").style.display = "";
+        }
+      });
+    });
+    return /* @__PURE__ */ index.createElement("div", { class: "titleBar" }, /* @__PURE__ */ index.createElement("div", { class: "title" }, "\u6D4B\u8BD5\u7A0B\u5E8F"), /* @__PURE__ */ index.createElement("div", { class: "toolBtns" }, /* @__PURE__ */ index.createElement("div", { onClick: minimize }, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-minimize" })), /* @__PURE__ */ index.createElement("div", { onClick: restore, id: "restoreBtn", style: "display: none;" }, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-suoxiao1" })), /* @__PURE__ */ index.createElement("div", { onClick: maximize, id: "maximizeBtn" }, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-fangda" })), /* @__PURE__ */ index.createElement("div", { onClick: close }, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-close" }))));
+  }
+
+  // src/render/CenterBox/LeftBar.jsx
+  function LeftBar_default() {
+    let minimize = () => {
+    };
+    return /* @__PURE__ */ index.createElement("div", { class: "leftBar" }, /* @__PURE__ */ index.createElement("div", { class: "mainMenu" }), /* @__PURE__ */ index.createElement("div", { class: "subMenu" }, /* @__PURE__ */ index.createElement("div", null, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-user-fill" })), /* @__PURE__ */ index.createElement("div", null, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-setting-filling" }))));
+  }
+
+  // src/render/CenterBox/NavigateBox.jsx
+  function NavigateBox_default() {
+    let minimize = () => {
+    };
+    return /* @__PURE__ */ index.createElement("div", { id: "navigateBox" }, /* @__PURE__ */ index.createElement("div", { id: "navigateHeader" }, /* @__PURE__ */ index.createElement("div", { id: "navigateSearchBox" }, /* @__PURE__ */ index.createElement("div", { class: "searchIcon" }, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon-search" })), /* @__PURE__ */ index.createElement("input", { id: "navigateSearchInput", type: "text" })), /* @__PURE__ */ index.createElement("div", null, /* @__PURE__ */ index.createElement("i", { class: "iconfont icon" }))));
+  }
+
+  // src/render/CenterBox/ListBox.jsx
+  function ListBox_default() {
+    let minimize = () => {
+    };
+    return /* @__PURE__ */ index.createElement("div", { id: "listBox" });
+  }
+
+  // src/render/CenterBox/ChessBoard.jsx
+  function ChessBoard_default() {
+    let minimize = () => {
+    };
+    return /* @__PURE__ */ index.createElement("div", { class: "chessBoard" });
+  }
+
+  // src/render/CenterBox/Splitter.jsx
+  function Splitter_default(props) {
+    let minimize = () => {
+    };
+    return /* @__PURE__ */ index.createElement("div", { id: props.id, class: "splitter" });
+  }
+
+  // src/render/CenterBox.jsx
+  function CenterBox_default() {
+    document.addEventListener("DOMContentLoaded", () => {
+      let initSplitter = (id) => {
+        let initEvent = (dom2) => {
+          let domPrev2 = dom2.previousElementSibling;
+          let documentMouseMove = (e) => {
+            let w = e.x - domPrev2.offsetLeft;
+            domPrev2.style.width = w + "px";
+            let splitters = document.querySelectorAll(".splitter");
+            for (let splitter of splitters) {
+              let domPrev3 = splitter.previousElementSibling;
+              let x2 = domPrev3.offsetLeft + domPrev3.clientWidth - splitter.clientWidth / 2;
+              splitter.style.left = x2 + "px";
+            }
+          };
+          let documentMouseUp = (e) => {
+            document.removeEventListener("mousemove", documentMouseMove);
+            document.removeEventListener("mouseup", documentMouseUp);
+            domPrev2 = null;
+            console.log("remove");
+          };
+          document.addEventListener("mousemove", documentMouseMove);
+          document.addEventListener("mouseup", documentMouseUp);
+        };
+        let dom = document.getElementById(id);
+        dom.addEventListener("mousedown", (e) => initEvent(e.target));
+        let domPrev = dom.previousElementSibling;
+        let x = domPrev.offsetLeft + domPrev.clientWidth - dom.clientWidth / 2;
+        dom.style.left = x + "px";
+      };
+      initSplitter("navigateBoxSplitter");
+      initSplitter("listBoxSplitter");
+    });
+    return /* @__PURE__ */ index.createElement("div", { class: "centerBox" }, /* @__PURE__ */ index.createElement(LeftBar_default, null), /* @__PURE__ */ index.createElement(NavigateBox_default, null), /* @__PURE__ */ index.createElement(Splitter_default, { id: "navigateBoxSplitter" }), /* @__PURE__ */ index.createElement(ListBox_default, null), /* @__PURE__ */ index.createElement(Splitter_default, { id: "listBoxSplitter" }), /* @__PURE__ */ index.createElement(ChessBoard_default, null));
+  }
+
+  // src/render/StatusBar.jsx
+  function StatusBar_default() {
+    let minimize = () => {
+    };
+    return /* @__PURE__ */ index.createElement("div", { class: "statusBar" }, /* @__PURE__ */ index.createElement("div", null, "123"));
   }
 
   // src/render/index.jsx
   function App() {
-    return /* @__PURE__ */ index.createElement(TitleBar_default, null);
+    document.body.ondragstart = () => false;
+    document.body.ondragend = () => false;
+    document.body.ondrop = () => false;
+    return /* @__PURE__ */ index.createElement(index.Fragment, null, /* @__PURE__ */ index.createElement(TitleBar_default, null), /* @__PURE__ */ index.createElement(CenterBox_default, null), /* @__PURE__ */ index.createElement(StatusBar_default, null));
   }
   document.body.appendChild(/* @__PURE__ */ index.createElement(App, null));
 })();

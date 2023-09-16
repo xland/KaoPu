@@ -133,4 +133,90 @@ body {
   background: #e81123 !important;
   color: #FFF !important;
 }
+
+/* src/render/CenterBox.css */
+.centerBox {
+  flex: 1;
+  display: flex;
+}
+
+/* src/render/CenterBox/LeftBar.css */
+.leftBar {
+  width: 56px;
+  border-right: 1px solid #2b2b2b;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.mainMenu {
+  flex: 1;
+}
+.subMenu div {
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  color: #888;
+  cursor: pointer;
+}
+.subMenu div:hover {
+  color: #d7d7d7;
+}
+.subMenu div i {
+  font-size: 16px;
+}
+
+/* src/render/CenterBox/NavigateBox.css */
+#navigateBox {
+  width: 258px;
+  border-right: 1px solid #2b2b2b;
+  box-sizing: border-box;
+}
+#navigateHeader {
+  display: flex;
+  background: #1f1f1f;
+  height: 32px;
+  line-height: 32px;
+}
+#navigateSearchBox {
+  background: #242424;
+  display: flex;
+  color: #c7c7c7;
+  flex: 1;
+}
+.searchIcon {
+  width: 26px;
+  text-align: center;
+}
+.searchIcon i {
+  font-size: 12px;
+}
+#navigateSearchInput {
+  background: none;
+  outline: none;
+  padding: 0px;
+  margin: 0px;
+  display: block;
+  border: none;
+  color: #c7c7c7;
+}
+
+/* src/render/CenterBox/Splitter.css */
+.splitter {
+  position: absolute;
+  top: 32px;
+  bottom: 28px;
+  width: 4px;
+  z-index: 1;
+  background: transparent;
+  cursor: ew-resize;
+}
+.splitter:hover {
+  background: #0078d4;
+}
+
+/* src/render/StatusBar.css */
+.statusBar {
+  border-top: 1px solid #2b2b2b;
+  height: 28px;
+}
 /*# sourceMappingURL=index.css.map */

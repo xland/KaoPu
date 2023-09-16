@@ -5,6 +5,7 @@ let startDevServer = async ()=>{
       entryPoints: ['./src/render/index.jsx'],
       bundle: true,
       outdir: 'dist',
+      external:["electron"],
       sourcemap:true
     })  
     await ctx.watch()  
@@ -21,12 +22,7 @@ let buildMain = async ()=>{
       platform:"node",
       external:["electron"],
       sourcemap:true
-    })  
-    // await ctx.watch()  
-    // let { host, port } = await ctx.serve({
-    //   servedir: 'dist',
-    // })
-    // console.log(`http://localhost:${port}`);
+    }) 
   }
 /**
  * 启动Electron

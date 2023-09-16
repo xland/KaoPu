@@ -2,7 +2,6 @@
 var { app, BrowserWindow, ipcMain, webContents } = require("electron");
 var path = require("path");
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
-console.log(process.argv);
 var win;
 var creatreWindow = async () => {
   win = new BrowserWindow(

@@ -1,39 +1,9 @@
-<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <radialGradient id="a" cx="-1164.4655" cy="183.22083"
-        gradientTransform="matrix(1.0928658 .12059494 -.1839198 .57949894 602.51041 430.3835)"
-        gradientUnits="userSpaceOnUse" r="51.982235">
-        <stop offset="0" stop-color="#ffdac0" />
-        <stop offset="1" stop-color="#ffd086" stop-opacity="0" />
-    </radialGradient>
-    <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="-863.72858" x2="-858.22321" y1="97.588837" y2="89.665787">
-        <stop offset="0" stop-color="#ca8231" />
-        <stop offset="1" stop-color="#fb984d" />
-    </linearGradient>
-    <radialGradient id="c" cx="-844.40564" cy="122.50025"
-        gradientTransform="matrix(-.24517112 .98197283 -1.5171415 -.3787878 -847.11888 992.87803)"
-        gradientUnits="userSpaceOnUse" r="31.494726">
-        <stop offset="0" stop-color="#d4874f" />
-        <stop offset="1" stop-color="#eba97a" />
-    </radialGradient>
-    <linearGradient id="d" gradientUnits="userSpaceOnUse" x1="-842.101771" x2="-855.321921" y1="113.500327"
-        y2="106.379177">
-        <stop offset="0" stop-color="#523321" />
-        <stop offset="1" stop-color="#d47b3c" />
-    </linearGradient>
-    <linearGradient id="e" gradientUnits="userSpaceOnUse" x1="-866.03174" x2="-866.60504" y1="121.46119" y2="127.63977">
-        <stop offset="0" stop-color="#ca8231" />
-        <stop offset="1" stop-color="#c77439" />
-    </linearGradient>
-    <linearGradient id="f" gradientUnits="userSpaceOnUse" x1="-824.51703" x2="-809.62506" y1="84.329185" y2="83.680367">
-        <stop offset="0" stop-color="#fb984d" />
-        <stop offset="1" stop-color="#523321" />
-    </linearGradient>
-    <linearGradient id="g" gradientTransform="matrix(-.92800381 .37257069 .37257069 .92800381 -1648.1278 318.46523)"
-        gradientUnits="userSpaceOnUse" x1="-822.29443" x2="-809.15576" y1="80.163322" y2="86.432243">
-        <stop offset="0" stop-color="#fb984d" />
-        <stop offset="1" stop-color="#ca8231" />
-    </linearGradient>
-    <g transform="matrix(1.650506 0 0 1.650506 1453.201439 -107.284012)">
+import React from "jsx-dom"
+
+export default function () {
+    return (
+        <symbol id="redChess" viewBox="0 0 160 160">
+    <g transform="matrix(1.650506 0 0 1.650506 1453.201439 -107.284012)">    
         <path
             d="m-808.26427 86.207681c1.96594 39.079939-33.89507 54.375079-53.07943 49.637959 15.6071 21.46389 42.3439 19.2886 56.20984 5.26435 13.73277-13.88958 16.0317-38.48478-3.13041-54.902309z"
             fill="#7e8481" />
@@ -60,4 +30,6 @@
     </g>
     <ellipse cx="-681.85846" cy="407.65219" fill="url(#a)" opacity=".6" rx="29.428188" ry="43.539673"
         transform="matrix(.94025021 .34048428 -.40155214 .91583616 865.118799 -75.275537)" />
-</svg>
+</symbol>
+    )
+}

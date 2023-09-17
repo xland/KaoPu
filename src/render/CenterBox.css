@@ -1,4 +1,6 @@
 .centerBox{
     flex: 1;
     display: flex;
+    overflow: hidden;
+    height: calc(100% - 60px);
 }

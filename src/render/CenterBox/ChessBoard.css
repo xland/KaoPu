@@ -8,15 +8,27 @@
     overflow: hidden;
 }
 .chessBoardContainer{
-    width:calc(100% - 300px);
     border: 1px solid #fff;
     aspect-ratio: 8 / 9;
+    display: flex;
+    flex-direction: column;
 }
 .chessBoardRow{
     display: flex;
-}
-.chessBoardBox{
     flex: 1;
+    border-bottom: 1px solid #fff;
+}
+.chessBoardRow .chessBoardBox:last-child{
+    border: none;
+}
+.chessBoardBox{    
+    position:relative;
+    flex: 1;
+    border-right: 1px solid #fff;
+    box-sizing: border-box;
+}
+.chessBoardRow:last-child{
+    border: none;
 }
 #boardImg{
     width: calc(100% - 100px);
@@ -24,4 +36,70 @@
     max-width: calc(100% - 100px);
     max-height: calc(100% - 100px);
     display: inline-block;
+}
+.jiugongA{
+    box-sizing:border-box;
+}
+.jiugongA::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:50%;
+    width:100%;
+    box-sizing:border-box;
+    border-bottom:1px solid #fff;
+    transform:rotateZ(45deg) scale(1.414);
+  }
+  .jiugongB{
+      box-sizing:border-box;
+  }
+  .jiugongB::before{
+      content:"";
+      position:absolute;
+      left:0px;
+      top:50%;
+      width:100%;
+      box-sizing:border-box;
+      border-bottom:1px solid #fff;
+      transform:rotateZ(-45deg) scale(1.414);
+    }
+.flowerLT{
+    box-sizing:border-box;
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:8%;
+    height: 8%;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+}
+.flowerRT{
+    box-sizing:border-box;
+    position:absolute;
+    right:2px;
+    top:2px;
+    width:8%;
+    height: 8%;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+.flowerRB{
+    box-sizing:border-box;
+    position:absolute;
+    right:2px;
+    bottom:2px;
+    width:8%;
+    height: 8%;
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+.flowerLB{
+    box-sizing:border-box;
+    position:absolute;
+    left:2px;
+    bottom:2px;
+    width:8%;
+    height: 8%;
+    border-bottom: 1px solid #fff;
+    border-left: 1px solid #fff;
 }

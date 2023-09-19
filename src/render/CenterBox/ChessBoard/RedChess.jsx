@@ -2,11 +2,33 @@ import React from "jsx-dom"
 
 export default function () {
     return (
-        <symbol id="redChess" viewBox="0 0 160 160">
-    <g transform="matrix(1.650506 0 0 1.650506 1453.201439 -107.284012)">    
-        <path
-            d="m-808.26427 86.207681c1.96594 39.079939-33.89507 54.375079-53.07943 49.637959 15.6071 21.46389 42.3439 19.2886 56.20984 5.26435 13.73277-13.88958 16.0317-38.48478-3.13041-54.902309z"
-            fill="#7e8481" />
+<g id="redChess" viewBox="0 0 10,10" transform="matrix(1.650506 0 0 1.650506 1453.201439 -107.284012)">
+<linearGradient id="b" gradientUnits="userSpaceOnUse" x1="-863.72858" x2="-858.22321" y1="97.588837"
+            y2="89.665787">
+            <stop offset="0" stop-color="#ca8231" />
+            <stop offset="1" stop-color="#fb984d" />
+        </linearGradient>
+        <radialGradient id="c" cx="-844.40564" cy="122.50025"
+            gradientTransform="matrix(-.24517112 .98197283 -1.5171415 -.3787878 -847.11888 992.87803)"
+            gradientUnits="userSpaceOnUse" r="31.494726">
+            <stop offset="0" stop-color="#d4874f" />
+            <stop offset="1" stop-color="#eba97a" />
+        </radialGradient>
+        <linearGradient id="d" gradientUnits="userSpaceOnUse" x1="-842.101771" x2="-855.321921" y1="113.500327"
+            y2="106.379177">
+            <stop offset="0" stop-color="#523321" />
+            <stop offset="1" stop-color="#d47b3c" />
+        </linearGradient>
+        <linearGradient id="e" gradientUnits="userSpaceOnUse" x1="-866.03174" x2="-866.60504" y1="121.46119"
+            y2="127.63977">
+            <stop offset="0" stop-color="#ca8231" />
+            <stop offset="1" stop-color="#c77439" />
+        </linearGradient>
+        <linearGradient id="f" gradientUnits="userSpaceOnUse" x1="-824.51703" x2="-809.62506" y1="84.329185"
+            y2="83.680367">
+            <stop offset="0" stop-color="#fb984d" />
+            <stop offset="1" stop-color="#523321" />
+        </linearGradient>
         <path
             d="m-834.0354 75.482513c-15.46487-.06239-30.05587 11.044045-34.47208 25.811987-1.84682 5.79564-1.95006 12.08316-.99108 18.05335 1.48873 7.82756 5.57985 15.12167 11.61124 20.35266 10.2371 9.81339 26.48762 12.22476 39.36534 6.52722 12.13853-5.1559 21.04356-17.18889 22.1256-30.37379 1.52448-14.33494-6.2539-29.099772-18.95054-35.932372-5.68889-3.153976-12.18317-4.727458-18.68848-4.439055z"
             fill="url(#b)" />
@@ -22,14 +44,8 @@ export default function () {
         <path
             d="m-809.46087 91.292868c-4.84936-4.37339-8.52652-8.625221-20.05818-10.272564l4.04189-4.800286c3.17304.817026 7.77102 1.174167 15.93031 7.606443z"
             fill="url(#f)" fill-rule="evenodd" />
-        <path
-            d="m-862.93198 101.60394c2.87082-5.86525 4.69914-11.180967 14.78681-17.006067l-5.53934-2.948793c-2.64019 1.940385-6.77407 3.984885-11.94945 12.993974z"
-            fill="url(#g)" fill-rule="evenodd" />
         <ellipse cx="-832.97882" cy="111.88448" fill="none" rx="31.560734" ry="30.982956" stroke="#935600"
             stroke-linejoin="round" stroke-miterlimit="5.1" stroke-width=".49719" />
     </g>
-    <ellipse cx="-681.85846" cy="407.65219" fill="url(#a)" opacity=".6" rx="29.428188" ry="43.539673"
-        transform="matrix(.94025021 .34048428 -.40155214 .91583616 865.118799 -75.275537)" />
-</symbol>
     )
 }

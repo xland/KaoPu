@@ -2,20 +2,18 @@ import React from "jsx-dom"
 import RedChess from "./RedChess"
 
 export default function (props) {
-    return (<svg id={props.id} preserveAspectRatio="xMidYMid meet" viewBox="0 0 898 1010" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    return (<svg id={props.id} preserveAspectRatio="xMidYMid meet" viewBox="0 0 898 1010" xmlns="http://www.w3.org/2000/svg">
   <g>
-    <symbol id="topLeft" viewBox="0,0,15,15">
-      <path fill="none" stroke="#fff" stroke-width="2" d="M 0 15 L 15 15 L 15 0" />
-    </symbol>
-    <symbol id="bottomLeft" viewBox="0,0,15,15">
-      <path fill="none" stroke="#fff" stroke-width="2" d="M 0 0 L 15 0 L 15 15" />
-    </symbol>
-    <symbol id="topRight" viewBox="0,0,15,15">
-      <path fill="none" stroke="#fff" stroke-width="2" d="M 0 0 L 0 15 L 15 15" />
-    </symbol>
-    <symbol id="bottomRight" viewBox="0,0,15,15">
-      <path fill="none" stroke="#fff" stroke-width="2" d="M 0 15 L 0 0 L 15 0" />
-    </symbol>
+    <defs>
+      <path id="topLeft" fill="none" stroke="#fff" stroke-width="1" d="M 0 10 L 10 10 L 10 0" />
+      <path id="bottomLeft" fill="none" stroke="#fff" stroke-width="1" d="M 0 0 L 10 0 L 10 10" />
+      <path id="topRight" fill="none" stroke="#fff" stroke-width="1" d="M 0 0 L 0 10 L 10 10" />
+      <path id="bottomRight" fill="none" stroke="#fff" stroke-width="1" d="M 0 10 L 0 0 L 10 0" />
+      <g id="redChess" viewBox="0 0 40,40">
+        <circle rx="100" ry="100" r="40" fill="#FFF" stroke="none"></circle>
+        <circle rx="100" ry="100" r="36" fill="#FFF" stroke="red" stroke-width="4"></circle>
+      </g>
+    </defs>
     <rect stroke="#fff" fill="none" stroke-width="2" width="894" height="1006" x="2" y="2" />
     <rect stroke="#fff" fill="none" stroke-width="1" width="878" height="989" x="10" y="10" />
 
@@ -53,69 +51,70 @@ export default function (props) {
     <text x="166" y="520" font-family="KaiTi" fill="#888" font-size="56">楚河</text>
     <text x="612" y="520" font-family="KaiTi" fill="#888" font-size="56">汉界</text>
 
-    <use xlink:href="#topLeft" x="93" y="203" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="93" y="226" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="114" y="203" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="114" y="226" width="15" height="15"></use>
+    <use href="#topLeft" x="98" y="208" width="15" height="15"></use>
+    <use href="#bottomLeft" x="98" y="226" width="15" height="15"></use>
+    <use href="#topRight" x="114" y="208" width="15" height="15"></use>
+    <use href="#bottomRight" x="114" y="226" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="758" y="203" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="758" y="226" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="781" y="203" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="781" y="226" width="15" height="15"></use>
+    <use href="#topLeft" x="763" y="208" width="15" height="15"></use>
+    <use href="#bottomLeft" x="763" y="226" width="15" height="15"></use>
+    <use href="#topRight" x="781" y="208" width="15" height="15"></use>
+    <use href="#bottomRight" x="781" y="226" width="15" height="15"></use>
 
-    <use xlink:href="#topRight" x="14" y="313" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="14" y="338" width="15" height="15"></use>
+    <use href="#topRight" x="14" y="318" width="15" height="15"></use>
+    <use href="#bottomRight" x="14" y="338" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="203" y="313" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="203" y="338" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="226" y="313" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="226" y="338" width="15" height="15"></use>
+    <use href="#topLeft" x="208" y="318" width="15" height="15"></use>
+    <use href="#bottomLeft" x="208" y="338" width="15" height="15"></use>
+    <use href="#topRight" x="226" y="318" width="15" height="15"></use>
+    <use href="#bottomRight" x="226" y="338" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="425" y="313" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="425" y="338" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="448" y="313" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="448" y="338" width="15" height="15"></use>
+    <use href="#topLeft" x="430" y="318" width="15" height="15"></use>
+    <use href="#bottomLeft" x="430" y="338" width="15" height="15"></use>
+    <use href="#topRight" x="448" y="318" width="15" height="15"></use>
+    <use href="#bottomRight" x="448" y="338" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="647" y="313" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="647" y="338" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="670" y="313" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="670" y="338" width="15" height="15"></use>
+    <use href="#topLeft" x="652" y="318" width="15" height="15"></use>
+    <use href="#bottomLeft" x="652" y="338" width="15" height="15"></use>
+    <use href="#topRight" x="670" y="318" width="15" height="15"></use>
+    <use href="#bottomRight" x="670" y="338" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="868" y="313" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="868" y="338" width="15" height="15"></use>
+    <use href="#topLeft" x="873" y="318" width="15" height="15"></use>
+    <use href="#bottomLeft" x="873" y="338" width="15" height="15"></use>
 
-    <use xlink:href="#topRight" x="14" y="647" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="14" y="670" width="15" height="15"></use>
+    <use href="#topRight" x="14" y="652" width="15" height="15"></use>
+    <use href="#bottomRight" x="14" y="670" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="203" y="647" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="203" y="670" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="226" y="647" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="226" y="670" width="15" height="15"></use>
+    <use href="#topLeft" x="208" y="652" width="15" height="15"></use>
+    <use href="#bottomLeft" x="208" y="670" width="15" height="15"></use>
+    <use href="#topRight" x="226" y="652" width="15" height="15"></use>
+    <use href="#bottomRight" x="226" y="670" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="425" y="647" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="425" y="670" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="448" y="647" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="448" y="670" width="15" height="15"></use>
+    <use href="#topLeft" x="430" y="652" width="15" height="15"></use>
+    <use href="#bottomLeft" x="430" y="670" width="15" height="15"></use>
+    <use href="#topRight" x="448" y="652" width="15" height="15"></use>
+    <use href="#bottomRight" x="448" y="670" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="647" y="647" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="647" y="670" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="670" y="647" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="670" y="670" width="15" height="15"></use>
+    <use href="#topLeft" x="652" y="652" width="15" height="15"></use>
+    <use href="#bottomLeft" x="652" y="670" width="15" height="15"></use>
+    <use href="#topRight" x="670" y="652" width="15" height="15"></use>
+    <use href="#bottomRight" x="670" y="670" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="868" y="647" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="868" y="670" width="15" height="15"></use>
+    <use href="#topLeft" x="873" y="652" width="15" height="15"></use>
+    <use href="#bottomLeft" x="873" y="670" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="93" y="758" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="93" y="781" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="114" y="758" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="114" y="781" width="15" height="15"></use>
+    <use href="#topLeft" x="98" y="763" width="15" height="15"></use>
+    <use href="#bottomLeft" x="98" y="781" width="15" height="15"></use>
+    <use href="#topRight" x="114" y="763" width="15" height="15"></use>
+    <use href="#bottomRight" x="114" y="781" width="15" height="15"></use>
 
-    <use xlink:href="#topLeft" x="758" y="758" width="15" height="15"></use>
-    <use xlink:href="#bottomLeft" x="758" y="781" width="15" height="15"></use>
-    <use xlink:href="#topRight" x="781" y="758" width="15" height="15"></use>
-    <use xlink:href="#bottomRight" x="781" y="781" width="15" height="15"></use>
+    <use href="#topLeft" x="763" y="763" width="15" height="15"></use>
+    <use href="#bottomLeft" x="763" y="781" width="15" height="15"></use>
+    <use href="#topRight" x="781" y="763" width="15" height="15"></use>
+    <use href="#bottomRight" x="781" y="781" width="15" height="15"></use>
 
-    <use xlink:href="res/123.svg#abc"/>
+    
+    <use href="#redChess" x="0" y="0" width="10" height="10"></use>
   </g>
 </svg>)
 }

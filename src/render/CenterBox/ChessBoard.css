@@ -7,6 +7,17 @@
     height: 100%;
     overflow: hidden;
 }
+.chessBoardContainer{
+    width:calc(100% - 300px);
+    border: 1px solid #fff;
+    aspect-ratio: 8 / 9;
+}
+.chessBoardRow{
+    display: flex;
+}
+.chessBoardBox{
+    flex: 1;
+}
 #boardImg{
     width: calc(100% - 100px);
     height: calc(100% - 100px);

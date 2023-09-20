@@ -6,6 +6,7 @@ export default function () {
   document.addEventListener("DOMContentLoaded", () => {
     let resizeHandler = (e) => {
       let dom = document.querySelector(".chessBoardContainer");
+      if(!dom) return;
       let w = dom.parentNode.clientWidth - 200;
       let h = document.body.clientHeight - 32 - 28 - 200;
       let w1 = (h / 9) * 8;
@@ -23,7 +24,7 @@ export default function () {
   });
   return (
     <div class="chessBoard">
-      <div class="chessBoardContainer">
+      {/* <div class="chessBoardContainer">
         <div class="chessBoardRow">
           <div class="chessBoardBox"></div>
           <div class="chessBoardBox"></div>
@@ -193,9 +194,7 @@ export default function () {
           <div class="chessBoardBox"></div>
           <div class="chessBoardBox"></div>
         </div>
-      </div>
-      {/* <Board id={"boardImg"}></Board> */}
-      {/* <img id="boardImg" src="./res/board.svg" alt="" /> */}
+      </div> */}
     </div>
   );
 }

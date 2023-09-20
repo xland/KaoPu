@@ -17,17 +17,20 @@ export default function () {
     let { ipcRenderer } = require("electron");
     await ipcRenderer.invoke("changeWindowState", "close");
   };
-  document.addEventListener("DOMContentLoaded",()=>{
+  let windowStateHandler = (e, state) => {
+    if (state === "maximize") {
+      document.getElementById("restoreBtn").style.display = "";
+      document.getElementById("maximizeBtn").style.display = "none";
+    } else if (state === "unmaximize") {
+      document.getElementById("restoreBtn").style.display = "none";
+      document.getElementById("maximizeBtn").style.display = "";
+    }
+  }
+  document.addEventListener("DOMContentLoaded", async ()=>{
     let { ipcRenderer } = require("electron");
-    ipcRenderer.addListener("windowStateChanged", (e, state) => {
-      if (state === "maximize") {
-        document.getElementById("restoreBtn").style.display = "";
-        document.getElementById("maximizeBtn").style.display = "none";
-      } else if (state === "unmaximize") {
-        document.getElementById("restoreBtn").style.display = "none";
-        document.getElementById("maximizeBtn").style.display = "";
-      }
-    });
+    ipcRenderer.addListener("windowStateChanged", windowStateHandler);
+    let flag = await ipcRenderer.invoke("getWindowState");
+    windowStateHandler(null,flag?"maximize":"unmaximize");
   })
   return (
     <div class="titleBar">

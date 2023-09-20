@@ -26,7 +26,6 @@ export default function() {
                 document.removeEventListener("mousemove",documentMouseMove);
                 document.removeEventListener("mouseup",documentMouseUp)
                 domPrev = null;
-                console.log("remove")
             }    
             document.addEventListener("mousemove",documentMouseMove)
             document.addEventListener("mouseup",documentMouseUp)

@@ -1,5 +1,8 @@
 let esbuild = require("esbuild")
 let devServerAddr = "";
+/**
+ * 启动Dev服务器
+ */
 let startDevServer = async ()=>{
     let ctx = await esbuild.context({
       entryPoints: ['./src/render/index.jsx'],
@@ -14,6 +17,9 @@ let startDevServer = async ()=>{
     })
     devServerAddr = `http://localhost:${port}`
   }
+/**
+ * 编译主进程代码
+ */
 let buildMain = async ()=>{
     await esbuild.build({
       entryPoints: ['./src/main/index.ts'],

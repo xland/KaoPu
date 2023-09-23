@@ -1,4 +1,5 @@
-/node_modules/
-/dist/*.*
-/dist/server/
-!/dist/index.html
+/ui/node_modules/
+/ui/dist/*.*
+/ui/dist/server/
+!/ui/dist/index.html
+/KaoPu/.vs/

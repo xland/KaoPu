@@ -1,0 +1,27 @@
+.piece{
+    position: absolute;
+    width: 76%;
+    height: 76%;
+    border-radius: 76%;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 */
+    left: -38%;
+    top: -38%;
+    font-size: calc(6vh - 14px);
+    outline-offset: -3px;
+    font-family: "KaiTi";
+    font-weight: bold;
+    box-sizing: border-box;
+    border: 1px solid #000;
+}
+.pieceBlack{  
+    color: black;
+    background: #fff;
+    outline: #000 solid 1px;
+}
+.pieceRed{    
+    color: red;
+    background: #fff;
+    outline: red solid 1px;
+}

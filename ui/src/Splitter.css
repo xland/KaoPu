@@ -1,7 +1,7 @@
 .splitter{
     position: absolute;
-    top: 32px;
-    bottom: 28px;
+    top: 0px;
+    bottom: 0px;
     width: 4px;
     z-index: 1;
     background: transparent;

@@ -4,7 +4,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 {
     webui::window my_window;
     my_window.set_multi_access(true);
-    my_window.show(R"(<html><head><title>测试</title>   
+    my_window.show(R"(<html><head><title>中国象棋棋力训练软件</title>   
         <link rel="stylesheet" href="http://localhost:8000/res/iconfont.css">
         <link rel="stylesheet" href="http://localhost:8000/index.css">
         </head>

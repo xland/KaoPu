@@ -13,5 +13,8 @@
     "esbuild": "^0.19.2",
     "html-minifier-terser": "^7.2.0",
     "jsx-dom": "^8.0.7"
+  },
+  "dependencies": {
+    "esbuild-sass-plugin": "^2.15.0"
   }
 }

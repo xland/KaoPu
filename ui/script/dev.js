@@ -1,4 +1,5 @@
 let esbuild = require("esbuild")
+let {sassPlugin} = require("esbuild-sass-plugin")
 /**
  * 启动Dev服务器
  */
@@ -7,8 +8,8 @@ let startDevServer = async ()=>{
       entryPoints: ['./src/index.jsx'],
       bundle: true,
       outdir: 'dist',
-      external:["electron"],
-      sourcemap:true
+      sourcemap:true,
+      plugins: [sassPlugin()]
     })  
     await ctx.watch()  
     let { host, port } = await ctx.serve({

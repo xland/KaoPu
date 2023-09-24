@@ -1,13 +1,10 @@
 .piece{
-    position: absolute;
     width: 76%;
     height: 76%;
     border-radius: 76%;
     display: flex;
     justify-content: center; /* 水平居中 */
     align-items: center;     /* 垂直居中 */
-    left: -38%;
-    top: -38%;
     font-size: calc(6vh - 14px);
     outline-offset: -3px;
     font-family: "KaiTi";

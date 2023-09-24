@@ -1,5 +1,5 @@
 import React from "jsx-dom";
-import "./Piece.css";
+import "./Piece.scss";
 
 export default function (props) {
   return (

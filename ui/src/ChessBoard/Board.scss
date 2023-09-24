@@ -1,0 +1,104 @@
+#chessBoardContainer{
+    border-left: 1px solid #888;
+    border-top: 1px solid #888;
+    border-right: 1px solid #888;
+    aspect-ratio: 8 / 9;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &>.row{
+        display: flex;
+        flex: 1;
+        border-bottom: 1px solid #888;
+        &>.cell{    
+            position:relative;
+            flex: 1;
+            border-right: 1px solid #888;
+            box-sizing: border-box;
+
+            &>.flowerLT{
+                box-sizing:border-box;
+                position:absolute;
+                left:2px;
+                top:2px;
+                width:8%;
+                height: 8%;
+                border-top: 1px solid #888;
+                border-left: 1px solid #888;
+            }
+            &>.flowerRT{
+                box-sizing:border-box;
+                position:absolute;
+                right:2px;
+                top:2px;
+                width:8%;
+                height: 8%;
+                border-top: 1px solid #888;
+                border-right: 1px solid #888;
+            }
+            &>.flowerRB{
+                box-sizing:border-box;
+                position:absolute;
+                right:2px;
+                bottom:2px;
+                width:8%;
+                height: 8%;
+                border-bottom: 1px solid #888;
+                border-right: 1px solid #888;
+            }
+            &>.flowerLB{
+                box-sizing:border-box;
+                position:absolute;
+                left:2px;
+                bottom:2px;
+                width:8%;
+                height: 8%;
+                border-bottom: 1px solid #888;
+                border-left: 1px solid #888;
+            }
+        }
+        &>.river{
+            flex: 1;
+            height: 100%;
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center;     /* 垂直居中 */
+            height: 100%;
+            color: #666;    
+            font-family: "KaiTi";
+            font-size: calc(6vh - 18px);
+        }
+        &>.cell:last-child{
+            border: none;
+        }
+        &>.jiugongA{
+            box-sizing:border-box;
+        }
+        &>.jiugongA::before{
+            content:"";
+            position:absolute;
+            left:0;
+            top:50%;
+            width:100%;
+            box-sizing:border-box;
+            border-bottom:1px solid #888;
+            transform:rotateZ(45deg) scale(1.414);
+          }
+        &>.jiugongB{
+            box-sizing:border-box;
+        }
+        &>.jiugongB::before{
+            content:"";
+            position:absolute;
+            left:0px;
+            top:50%;
+            width:100%;
+            box-sizing:border-box;
+            border-bottom:1px solid #888;
+            transform:rotateZ(-45deg) scale(1.414);
+        }
+    }     
+    
+    
+}

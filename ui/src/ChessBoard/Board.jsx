@@ -2,6 +2,25 @@ import React from "jsx-dom";
 import "./Board.scss";
 
 export default function (props) {
+  let resizeHandler = (e) => {
+    let dom = document.getElementById("chessBoardContainer");
+    if (!dom) return;
+    let w = dom.parentNode.clientWidth - 100;
+    let h = document.body.clientHeight - 100;
+    let w1 = (h / 9) * 8;
+    let h1 = (w / 8) * 9;
+    if (w1 > w) {
+      h = h1;
+    }
+    if (h1 > h) {
+      w = w1;
+    }
+    dom.style = `width:${w}px;height:${h}px;`;
+  };
+  document.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("resize", resizeHandler);
+    resizeHandler();
+  });
   return (
     <div id="chessBoardContainer">
       <div class="row">

@@ -25,5 +25,18 @@
         display: flex;
         justify-content: center; /* 水平居中 */
         align-items: center;     /* 垂直居中 */
+        position: relative;
+    }
+    .usablePoint::before{
+        content: '';
+        width: 10px;
+        height: 10px;
+        background: #008a0088;
+        box-shadow: 0px 0px 6px #008a0088;
+        border-radius: 20px;
+        z-index: 9;
+        position: absolute;
+        border: 1px solid #008a00;
+        box-sizing: border-box;
     }
 }

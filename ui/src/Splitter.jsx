@@ -1,10 +1,6 @@
-import React from "jsx-dom"
-import "./Splitter.css"
+import React from "jsx-dom";
+import "./Splitter.scss";
 export default function (props) {
-    let minimize = () => {
-
-    }
-    return (
-        <div id={props.id} class="splitter"></div>
-    )
+  let minimize = () => {};
+  return <div id={props.id} class="splitter"></div>;
 }

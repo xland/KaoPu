@@ -1,40 +1,29 @@
 import React from "jsx-dom";
-import "./ChessBoard.css";
+import "./ChessBoard.scss";
 import Board from "./ChessBoard/Board";
 import Piece from "./ChessBoard/Piece";
+import PiecePoint from "./ChessBoard/PiecePoint";
 
 export default function () {
+  let pieceClick = (e) => {
+    let target = e.target;
+    if (!target.classList.contains("piece")) return;
+    if (target.classList.contains("pieceSelected")) {
+      target.classList.remove("pieceSelected");
+      //todo remove point
+      return;
+    }
+    let prevSelectedDom = document.querySelector(".pieceSelected");
+    if (prevSelectedDom) {
+      prevSelectedDom.classList.remove("pieceSelected");
+    }
+    target.classList.add("pieceSelected");
+    PiecePoint[target.innerText.trim()](target.parentElement.id);
+  };
   document.addEventListener("DOMContentLoaded", () => {
-    let resizeHandler = (e) => {
-      let dom = document.getElementById("chessBoardContainer");
-      if (!dom) return;
-      let w = dom.parentNode.clientWidth - 100;
-      let h = document.body.clientHeight - 200;
-      let w1 = (h / 9) * 8;
-      let h1 = (w / 8) * 9;
-      if (w1 > w) {
-        h = h1;
-      }
-      if (h1 > h) {
-        w = w1;
-      }
-      dom.style = `width:${w}px;height:${h}px;`;
-      // let grid = document.getElementById("chessGridContainer");
-      // grid.style = `left:${dom.offsetLeft - dom.clientWidth / 16}px;top:${
-      //   dom.offsetTop - dom.clientHeight / 18
-      // }px;width:${dom.clientWidth + dom.clientWidth / 8}px;height:${
-      //   dom.clientHeight + dom.clientHeight / 9
-      // }px`;
-    };
-    window.addEventListener("resize", resizeHandler);
-    resizeHandler();
-
-    boardDom.addEventListener("click", (e) => {
-      let target = e.target;
-      if (target.classList.contains("piece")) {
-        console.log(e.target);
-      }
-    });
+    document
+      .getElementById("chessGridContainer")
+      .addEventListener("click", pieceClick);
   });
   return (
     <div class="chessBoard">

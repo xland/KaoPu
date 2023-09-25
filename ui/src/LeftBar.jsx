@@ -1,5 +1,5 @@
 import React from "jsx-dom";
-import "./LeftBar.css";
+import "./LeftBar.scss";
 export default function () {
   let cmds = [];
   cmds.push("position startpos moves h2e2");

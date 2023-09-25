@@ -239,6 +239,7 @@ export default {
             if(jumpFlag){
                 if(this.checkPieceType(pointId,id) === "enemy"){
                     this.setUsablePoint(id);
+                    return true
                 }
             }else{
                 if(this.hasPiece(id)){
@@ -246,22 +247,31 @@ export default {
                 }else{
                     this.setUsablePoint(id);
                 }
+                return false
             }
         }
         for(let i=x+1;i<=8;i++){
-            checkPoint(this.xPointArr[i]+y)
+            if(checkPoint(this.xPointArr[i]+y)){
+                break;
+            }
         }
         jumpFlag = false;
         for(let i = x-1;i>=0;i--){
-            checkPoint(this.xPointArr[i]+y)
+            if(checkPoint(this.xPointArr[i]+y)){
+                break;
+            }
         }
         jumpFlag = false;        
         for(let i=y+1;i<=9;i++){
-            checkPoint(pointId[0]+i)
+            if(checkPoint(pointId[0]+i)){
+                break;
+            }
         }
         jumpFlag = false;        
         for(let i=y-1;i>=0;i--){
-            checkPoint(pointId[0]+i)
+            if(checkPoint(pointId[0]+i)){
+                break;
+            }
         }
     },
     '兵'(pointId){

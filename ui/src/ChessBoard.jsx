@@ -5,12 +5,12 @@ import Piece from "./ChessBoard/Piece";
 import PiecePoint from "./ChessBoard/PiecePoint";
 
 export default function () {
-  let pieceClick = (e) => {
-    let target = e.target;
-    if (!target.classList.contains("piece")) return;
+  let isRedTurn = true;
+  let selectPiece = (target) => {
+    document.querySelector(".justMoved")?.classList.remove("justMoved");
     if (target.classList.contains("pieceSelected")) {
       target.classList.remove("pieceSelected");
-      //todo remove point
+      PiecePoint.removeUsablePoint();
       return;
     }
     let prevSelectedDom = document.querySelector(".pieceSelected");
@@ -20,10 +20,56 @@ export default function () {
     target.classList.add("pieceSelected");
     PiecePoint[target.innerText.trim()](target.parentElement.id);
   };
+  let movePiece = (target) => {
+    target.querySelector(".piece")?.remove();
+    let cur = document.querySelector(".pieceSelected");
+    let parent = cur.parentElement;
+    parent.classList.add("justMoved");
+    target.appendChild(cur);
+    PiecePoint.removeUsablePoint();
+    cur.classList.remove("pieceSelected");
+    isRedTurn = !isRedTurn;
+    setClickable();
+  };
+  let gridClick = (e) => {
+    let target = e.target;
+    if (
+      target.classList.contains("piece") &&
+      target.parentElement.classList.contains("clickable")
+    ) {
+      selectPiece(target);
+      return;
+    }
+    if (target.classList.contains("clickable")) {
+      let dom = target.querySelector("piece");
+      if (dom) {
+        selectPiece(dom);
+        return;
+      }
+    }
+    if (target.classList.contains("usablePoint")) {
+      movePiece(target);
+    }
+    if (target.parentElement.classList.contains("usablePoint")) {
+      movePiece(target.parentElement);
+    }
+  };
+  let setClickable = () => {
+    let arr = document.querySelectorAll(".clickable");
+    for (let dom of arr) {
+      dom.classList.remove("clickable");
+    }
+    let className = isRedTurn ? ".pieceRed" : ".pieceBlack";
+    arr = document.querySelectorAll(className);
+    for (let dom of arr) {
+      dom.parentElement.classList.add("clickable");
+    }
+  };
   document.addEventListener("DOMContentLoaded", () => {
     document
       .getElementById("chessGridContainer")
-      .addEventListener("click", pieceClick);
+      .addEventListener("click", gridClick);
+    setClickable();
   });
   return (
     <div class="chessBoard">

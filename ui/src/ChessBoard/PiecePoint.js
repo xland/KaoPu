@@ -140,27 +140,27 @@ export default {
         let x = this.xPointArr.indexOf(pointId[0]);
         let y = parseInt(pointId[1])
         if(x+2 <= 8){
-            if(y+2 <= 4){
-                let tarId = this.xPointArr[x+2]+(y+2);
+            if(y-2 >= 5){
+                let tarId = this.xPointArr[x+2]+(y-2);
                 if(this.checkPieceType(pointId,tarId) != "friend"){
                     this.setUsablePoint(tarId);
                 }
             }
-            if(y-2 >=0){
-                let tarId = this.xPointArr[x+2]+(y-2);
+            if(y+2 <= 9){
+                let tarId = this.xPointArr[x+2]+(y+2);
                 if(this.checkPieceType(pointId,tarId) != "friend"){
                     this.setUsablePoint(tarId);
                 }
             }
         }
         if(x-2 >= 0){
-            if(y+2 <= 4){
-                let tarId = this.xPointArr[x-2]+(y+2);
+            if(y-2 >= 5){
+                let tarId = this.xPointArr[x-2]+(y-2);
                 if(this.checkPieceType(pointId,tarId) != "friend"){
                     this.setUsablePoint(tarId);
                 }
             }
-            if(y-2 >=0){
+            if(y+2 <= 9){
                 let tarId = this.xPointArr[x-2]+(y+2);
                 if(this.checkPieceType(pointId,tarId) != "friend"){
                     this.setUsablePoint(tarId);
@@ -173,13 +173,13 @@ export default {
         let x = this.xPointArr.indexOf(pointId[0]);
         let y = parseInt(pointId[1])
         if(x+1<=5){
-            if(y+1 <= 2){
+            if(y+1 <= 9){
                 let tarId = this.xPointArr[x+1]+(y+1);
                 if(this.checkPieceType(pointId,tarId) != "friend"){
                     this.setUsablePoint(tarId);
                 }
             }
-            if(y-1 >= 0){
+            if(y-1 >= 7){
                 let tarId = this.xPointArr[x+1]+(y-1);
                 if(this.checkPieceType(pointId,tarId) != "friend"){
                     this.setUsablePoint(tarId);
@@ -187,13 +187,13 @@ export default {
             }
         }
         if(x-1>=3){
-            if(y+1 <= 2){
+            if(y+1 <= 9){
                 let tarId = this.xPointArr[x-1]+(y+1);
                 if(this.checkPieceType(pointId,tarId) != "friend"){
                     this.setUsablePoint(tarId);
                 }
             }
-            if(y-1 >= 0){
+            if(y-1 >= 7){
                 let tarId = this.xPointArr[x-1]+(y-1);
                 if(this.checkPieceType(pointId,tarId) != "friend"){
                     this.setUsablePoint(tarId);
@@ -295,15 +295,128 @@ export default {
         }
     },
     '將'(pointId){
-        this.帥(pointId)
+        this.removeUsablePoint();
+        let x = this.xPointArr.indexOf(pointId[0]);
+        let y = parseInt(pointId[1])
+        if(x+1<=5){
+            let tarId = this.xPointArr[x+1]+y;
+            if(this.checkPieceType(pointId,tarId) != "friend"){
+                this.setUsablePoint(tarId);
+            }
+        }
+        if(x-1>=3){
+            let tarId = this.xPointArr[x-1]+y;
+            if(this.checkPieceType(pointId,tarId) != "friend"){
+                this.setUsablePoint(tarId);
+            }
+        }
+        if(y+1<=9){
+            let tarId = this.xPointArr[x]+(y+1);
+            if(this.checkPieceType(pointId,tarId) != "friend"){
+                this.setUsablePoint(tarId);
+            }
+        }
+        if(y-1>=7){
+            let tarId = this.xPointArr[x]+(y-1);
+            if(this.checkPieceType(pointId,tarId) != "friend"){
+                this.setUsablePoint(tarId);
+            }
+        }
     },
     '相'(pointId){
-        this.象(pointId)
+        this.removeUsablePoint();
+        let x = this.xPointArr.indexOf(pointId[0]);
+        let y = parseInt(pointId[1])
+        if(x+2 <= 8){
+            if(y+2 <= 4){
+                let tarId = this.xPointArr[x+2]+(y+2);
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+            if(y-2 >=0){
+                let tarId = this.xPointArr[x+2]+(y-2);
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+        }
+        if(x-2 >= 0){
+            if(y+2 <= 4){
+                let tarId = this.xPointArr[x-2]+(y+2);
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+            if(y-2 >=0){
+                let tarId = this.xPointArr[x-2]+(y+2);
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+        }
     },
     '卒'(pointId){
-        this.兵(pointId)
+        this.removeUsablePoint();
+        let x = this.xPointArr.indexOf(pointId[0]);
+        let y = parseInt(pointId[1])
+        if(y > 4){
+            let tarId = this.xPointArr[x]+(y-1);
+            if(this.checkPieceType(pointId,tarId) != "friend"){
+                this.setUsablePoint(tarId);
+            }
+        }else{
+            if(y-1>=0){
+                let tarId = this.xPointArr[x]+(y-1);
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+            if(x+1<=8){
+                let tarId = this.xPointArr[x+1]+y;
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+            if(x-1>=0){
+                let tarId = this.xPointArr[x-1]+y;
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+        }
     },
     '仕'(pointId){
-        this.士(pointId)
+        this.removeUsablePoint();
+        let x = this.xPointArr.indexOf(pointId[0]);
+        let y = parseInt(pointId[1])
+        if(x+1<=5){
+            if(y+1 <= 2){
+                let tarId = this.xPointArr[x+1]+(y+1);
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+            if(y-1 >= 0){
+                let tarId = this.xPointArr[x+1]+(y-1);
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+        }
+        if(x-1>=3){
+            if(y+1 <= 2){
+                let tarId = this.xPointArr[x-1]+(y+1);
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+            if(y-1 >= 0){
+                let tarId = this.xPointArr[x-1]+(y-1);
+                if(this.checkPieceType(pointId,tarId) != "friend"){
+                    this.setUsablePoint(tarId);
+                }
+            }
+        }
     }
 }

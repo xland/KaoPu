@@ -5,7 +5,7 @@ let {sassPlugin} = require("esbuild-sass-plugin")
  */
 let startDevServer = async ()=>{
     let ctx = await esbuild.context({
-      entryPoints: ['./src/index.jsx'],
+      entryPoints: ['./src/index.tsx'],
       bundle: true,
       outdir: 'dist',
       sourcemap:true,

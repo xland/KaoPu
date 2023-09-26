@@ -37,6 +37,8 @@ export default {
                 break;
             }else if(type === "friend"){
                 break;
+            }else{
+                this.setUsablePoint(this.xPointArr[i]+y);
             }
         }
         for(let i=x-1;i>=0;i--){
@@ -133,7 +135,6 @@ export default {
                 }
             }
         }
-        return result;
     },
     '象'(pointId){
         this.removeUsablePoint();
